@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Kanchuu 💘</title>
+
+  <!-- Cutesy font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg1:#fff0f6;
+      --bg2:#ffe3ec;
+      --card:#ffffffcc;
+      --text:#5a2a3a;
+      --yes:#ff3b7b;
+      --yes2:#ff5a93;
+      --no:#9aa3ad;
+      --shadow: 0 20px 60px rgba(0,0,0,.12);
+    }
+
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+      min-height:100svh;
+      display:grid;
+      place-items:center;
+      font-family: Nunito, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(1200px 800px at 20% 10%, var(--bg2), transparent 60%),
+        radial-gradient(1000px 700px at 80% 20%, #ffd6e7, transparent 55%),
+        linear-gradient(180deg, var(--bg1), #fff);
+      overflow:hidden;
+    }
+
+    .card{
+      width:min(720px, 92vw);
+      background:var(--card);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,59,123,.18);
+      border-radius: 26px;
+      box-shadow: var(--shadow);
+      padding: 28px 22px 26px;
+      position:relative;
+    }
+
+    .hearts{
+      position:absolute; inset:-40px -20px auto -20px;
+      height:70px;
+      pointer-events:none;
+      opacity:.22;
+      filter: blur(.2px);
+      background:
+        radial-gradient(circle at 10% 60%, #ff3b7b 0 10px, transparent 11px),
+        radial-gradient(circle at 28% 30%, #ff5a93 0 9px, transparent 10px),
+        radial-gradient(circle at 50% 55%, #ff3b7b 0 8px, transparent 9px),
+        radial-gradient(circle at 70% 35%, #ff5a93 0 10px, transparent 11px),
+        radial-gradient(circle at 90% 60%, #ff3b7b 0 9px, transparent 10px);
+    }
+
+    h1{
+      margin: 8px 0 10px;
+      font-family: Pacifico, cursive;
+      font-size: clamp(30px, 4.2vw, 46px);
+      font-weight: 400;
+      text-align:center;
+      color:#c2185b;
+      letter-spacing:.3px;
+    }
+
+    p.sub{
+      margin: 0 0 18px;
+      text-align:center;
+      font-size: 15px;
+      opacity:.9;
+    }
+
+    .gifWrap{
+      display:grid;
+      place-items:center;
+      margin: 10px 0 18px;
+    }
+
+    .gif{
+      width:min(360px, 72vw);
+      aspect-ratio: 1 / 1;
+      border-radius: 22px;
+      object-fit: cover;
+      border: 1px solid rgba(255,59,123,.22);
+      box-shadow: 0 14px 30px rgba(194,24,91,.15);
+      background:#fff;
+    }
+
+    .btnArea{
+      position:relative;
+      height: 120px;
+      margin-top: 10px;
+    }
+
+    button{
+      border: none;
+      cursor: pointer;
+      font-weight: 800;
+      letter-spacing:.3px;
+      border-radius: 999px;
+      transition: transform .12s ease, filter .12s ease;
+      user-select:none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    #yesBtn{
+      position:absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      padding: 16px 34px;
+      font-size: 18px;
+      color: white;
+      background: linear-gradient(135deg, var(--yes), var(--yes2));
+      box-shadow: 0 16px 30px rgba(255,59,123,.35);
+    }
+    #yesBtn:hover{ transform: translate(-50%, -50%) scale(1.04); filter:saturate(1.05); }
+    #yesBtn:active{ transform: translate(-50%, -50%) scale(.98); }
+
+    #noBtn{
+      position:absolute;
+      padding: 10px 22px;
+      font-size: 14px;
+      color: white;
+      background: linear-gradient(135deg, #a6b0ba, #8f98a3);
+      box-shadow: 0 12px 24px rgba(0,0,0,.18);
+      left: 65%;
+      top: 18%;
+    }
+    #noBtn:hover{ transform: scale(1.03); }
+
+    .footer{
+      text-align:center;
+      margin-top: 10px;
+      font-size: 12px;
+      opacity:.65;
+    }
+
+    /* Confetti */
+    .confetti{
+      position:absolute;
+      width:10px; height:14px;
+      border-radius: 3px;
+      pointer-events:none;
+      opacity:.95;
+      will-change: transform, opacity;
+    }
+
+    @media (max-width: 420px){
+      .btnArea{ height: 140px; }
+      #noBtn{ left: 62%; top: 10%; }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="card" id="card">
+    <div class="hearts"></div>
+
+    <h1 id="headline">Kanchuuuu, will you be my Valentine?</h1>
+    <p class="sub" id="subtext">There are no wrong answers. Except one. 😌</p>
+
+    <div class="gifWrap">
+      <!-- Swap these URLs to your preferred GIFs -->
+      <img
+        id="gif"
+        class="gif"
+        src="https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif"
+        alt="Cute begging puppy GIF"
+      />
+    </div>
+
+    <section class="btnArea" aria-label="choices">
+      <button id="yesBtn" type="button">Huss 💖</button>
+      <button id="noBtn" type="button" aria-label="No (good luck clicking)">No 🙃</button>
+    </section>
+
+    <div class="footer">Project “Kanchu" 💘</div>
+  </main>
+
+  <script>
+    // --- Assets (swap these to any GIFs you want) ---
+    const ASSET_BEG = "https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif";
+    const ASSET_YAY = "valentines.jpg"; // celebratory
+
+    const noBtn = document.getElementById("noBtn");
+    const yesBtn = document.getElementById("yesBtn");
+    const card  = document.getElementById("card");
+    const gif   = document.getElementById("gif");
+    const headline = document.getElementById("headline");
+    const subtext  = document.getElementById("subtext");
+
+    // Keep the "No" button inside a safe zone so it doesn't cause scrollbars or go off-screen.
+    function teleportNoButton(){
+      const viewportW = window.innerWidth;
+      const viewportH = window.innerHeight;
+
+      const rect = noBtn.getBoundingClientRect();
+      const btnW = rect.width;
+      const btnH = rect.height;
+
+      const safe = 14; // padding from edges
+      const topSafe = 18; // a bit extra at top for mobile browser bars
+
+      const maxX = Math.max(safe, viewportW - btnW - safe);
+      const maxY = Math.max(topSafe, viewportH - btnH - safe);
+
+      const x = Math.floor(Math.random() * (maxX - safe + 1)) + safe;
+      const y = Math.floor(Math.random() * (maxY - topSafe + 1)) + topSafe;
+
+      // Use fixed positioning so it can jump anywhere in viewport
+      noBtn.style.position = "fixed";
+      noBtn.style.left = x + "px";
+      noBtn.style.top  = y + "px";
+    }
+
+    // Evasive maneuvers
+    noBtn.addEventListener("mouseenter", teleportNoButton);
+    noBtn.addEventListener("mouseover", teleportNoButton);
+    noBtn.addEventListener("touchstart", (e) => { e.preventDefault(); teleportNoButton(); }, {passive:false});
+    noBtn.addEventListener("click", (e) => { e.preventDefault(); teleportNoButton(); });
+
+    // --- Confetti (optional but included) ---
+    function burstConfetti(originX, originY){
+      const pieces = 90;
+      const colors = ["#ff3b7b","#ff5a93","#ffd166","#06d6a0","#4cc9f0","#c77dff","#f8b4d9","#ffffff"];
+
+      for(let i=0;i<pieces;i++){
+        const el = document.createElement("div");
+        el.className = "confetti";
+        el.style.background = colors[Math.floor(Math.random()*colors.length)];
+        el.style.left = originX + "px";
+        el.style.top  = originY + "px";
+        el.style.transform = `translate(-50%,-50%) rotate(${Math.random()*360}deg)`;
+        document.body.appendChild(el);
+
+        const angle = Math.random() * Math.PI * 2;
+        const velocity = 6 + Math.random() * 10;
+        const drift = (Math.random() - 0.5) * 2;
+
+        let x = 0, y = 0;
+        let vy = -velocity;
+        let vx = Math.cos(angle) * velocity + drift;
+        const gravity = 0.35 + Math.random()*0.15;
+        const spin = (Math.random() - 0.5) * 18;
+        let rot = Math.random()*360;
+        let life = 0;
+
+        const tick = () => {
+          life++;
+          vx *= 0.99;
+          vy += gravity;
+          x += vx;
+          y += vy;
+          rot += spin;
+
+          el.style.transform = `translate(calc(-50% + ${x}px), calc(-50% + ${y}px)) rotate(${rot}deg)`;
+          el.style.opacity = String(Math.max(0, 1 - life/120));
+
+          if(life < 120){
+            requestAnimationFrame(tick);
+          } else {
+            el.remove();
+          }
+        };
+        requestAnimationFrame(tick);
+      }
+    }
+
+    // Success state
+    yesBtn.addEventListener("click", (e) => {
+      headline.textContent = "Yay!! See you on the 14th 💘";
+      subtext.textContent  = "Correct answer 😌 Now go get ready!";
+      gif.src = ASSET_YAY;
+
+      // Disable the game
+      noBtn.style.display = "none";
+      yesBtn.textContent = "It’s a date 🥰";
+      yesBtn.disabled = true;
+      yesBtn.style.cursor = "default";
+      yesBtn.style.filter = "brightness(1.03)";
+
+      // Confetti burst from the button position
+      const r = e.target.getBoundingClientRect();
+      burstConfetti(r.left + r.width/2, r.top + r.height/2);
+
+      // Little extra: pulse card
+      card.animate(
+        [{transform:"scale(1)"},{transform:"scale(1.02)"},{transform:"scale(1)"}],
+        {duration:520, easing:"ease-out"}
+      );
+    });
+
+    // Ensure initial GIF is set (in case you swap constants)
+    gif.src = ASSET_BEG;
+  </script>
+</body>
+</html>
